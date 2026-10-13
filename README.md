@@ -1,5 +1,25 @@
 # Lab Day 10: Finetune Qwen3-VL-4B (LoRA) để định vị hư hại mặt đường
 
+## Chạy local trên Windows
+
+Mã ở `student_lab.py`; dùng `run_local.py` để chạy từng giai đoạn mà không cần Colab. Tạo môi trường ảo, cài PyTorch CUDA phù hợp với GPU, rồi cài `requirements-local.txt`. Không dùng `requirements-colab.txt` trong môi trường local có PyTorch 2.5.1: `transformers==5.19.0` đã gặp lỗi import với cấu hình đó; bản local dùng `transformers==4.57.2`.
+
+```powershell
+python -m venv --system-site-packages .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements-local.txt
+.\.venv\Scripts\python.exe run_local.py prepare
+.\.venv\Scripts\python.exe run_local.py e0
+.\.venv\Scripts\python.exe run_local.py e1
+.\.venv\Scripts\python.exe run_local.py e2
+.\.venv\Scripts\python.exe run_local.py e3
+.\.venv\Scripts\python.exe run_local.py e4
+.\.venv\Scripts\python.exe run_local.py figures
+```
+
+Nếu không dùng Kaggle API, truyền `--zip <đường-dẫn>` hoặc `--source <thư-mục>` cho bước `prepare`. Khoá Kaggle để trong `.env` (Git bỏ qua), không để trong `.env.example`. Dữ liệu, model cache và checkpoint nằm trong `data/` và `work/`, đều được Git bỏ qua. `run_local.py all` chạy các bước theo thứ tự khi GPU đủ bộ nhớ. Báo cáo và `report/evidence/*.json` chỉ hợp lệ sau khi từng lượt chạy hoàn tất.
+
+Máy đã thử ngày 13/10/2026 có RTX 3050 Laptop 4 GB: bộ dữ liệu chia thành công, model 4-bit nạp được nhưng E0 dùng khoảng 3,9/4 GB VRAM và ảnh test đầu chưa suy luận xong sau hơn 6 phút. Đây không phải cấu hình thực tế để chạy đầy đủ E0–E4 theo thời lượng lab.
+
 > Track 4 · Ngày 10 · *Nhãn, auto-labeling và Vision–Language Model* · **bài cá nhân** · ≈ 4 giờ trên **Google Colab T4 (miễn phí)**
 > Bạn **tự viết** phần huấn luyện và suy luận theo pseudo code trong [`GUIDE.md`](GUIDE.md). Công cụ chia dữ liệu và chấm điểm do giảng viên viết sẵn và **không được sửa**.
 
