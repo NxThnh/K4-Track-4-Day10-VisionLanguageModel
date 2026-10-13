@@ -1,4 +1,4 @@
-Ho ten: Not provided.
+Ho ten: Nguyễn Xuân Thành.
 `dataset_version`: `d10-21e4070301` (prepared locally from the Kaggle dataset).
 
 **Status:** E0 and E1 completed on Colab, and their scorer-generated evidence was recovered from Drive. E2-E4 remain pending because the GPU runtime has been unreliable. The local RTX 3050 Laptop 4 GB attempt did not complete E0. Experimental values below come from the recovered evidence; no pending results are inferred.
