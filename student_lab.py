@@ -102,7 +102,7 @@ def load_model():
 def messages(row, answer=None, coord="norm1000"):
     user = {"role": "user", "content": [{"type": "image", "image": image_for(row)},
                                         {"type": "text", "text": prompt_for(coord)}]}
-    return [user] if answer is None else [user, {"role": "assistant", "content": answer}]
+    return [user] if answer is None else [user, {"role": "assistant", "content": [{"type": "text", "text": answer}]}]
 
 
 def predict(model, processor, rows, output, coord="norm1000", batch_size=4):
@@ -138,7 +138,7 @@ def encode_example(processor, row, coord="norm1000"):
     msg = messages(row, coord=coord)
     common = dict(tokenize=True, return_dict=True, return_tensors="pt", padding=False)
     prompt = processor.apply_chat_template(msg, add_generation_prompt=True, **common)
-    full = processor.apply_chat_template(msg + [{"role": "assistant", "content": answer}],
+    full = processor.apply_chat_template(messages(row, answer=answer, coord=coord),
                                          add_generation_prompt=False, **common)
     n = prompt["input_ids"].shape[1]
     if not torch.equal(prompt["input_ids"][0], full["input_ids"][0, :n]):
