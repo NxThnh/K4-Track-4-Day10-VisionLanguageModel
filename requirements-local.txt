@@ -1,0 +1,10 @@
+# E0-E4 on local Windows with an existing CUDA-enabled PyTorch installation.
+# Tested import combination: torch 2.5.1+cu121, transformers 4.57.2.
+# Install a matching CUDA PyTorch and torchvision first for your own GPU.
+transformers==4.57.2
+peft==0.21.2
+accelerate==1.15.0
+bitsandbytes==0.50.2
+pyyaml
+pillow
+kaggle
