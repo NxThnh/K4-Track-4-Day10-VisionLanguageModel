@@ -1,7 +1,7 @@
 Ho ten: Nguyễn Xuân Thành.
 `dataset_version`: `d10-21e4070301` (prepared locally from the Kaggle dataset).
 
-**Status:** E0 and E1 completed on Colab, and their scorer-generated evidence was recovered from Drive. E2-E4 remain pending because the GPU runtime has been unreliable. The local RTX 3050 Laptop 4 GB attempt did not complete E0. Experimental values below come from the recovered evidence; no pending results are inferred.
+**Status:** E0 and E1 completed on Colab, and their scorer-generated evidence was recovered from Drive. E2 is training locally and reached step 100/300 on 14 October 2026; its test result is not available yet. E3–E4 have not started. The local RTX 3050 Laptop 4 GB attempt did not complete E0. Experimental scores below come from the recovered E0/E1 evidence; no pending results are inferred. See `PROGRESS.md` for a clearly labeled runtime estimate.
 
 Local environment: Python 3.10.9, PyTorch 2.5.1+cu121, Transformers 4.57.2, RTX 3050 Laptop GPU 4 GB, 15.4 GB system RAM. The Colab-pinned Transformers 5.19.0 failed to import with this PyTorch build; the local environment uses 4.57.2 as documented in `requirements-local.txt`. The dataset split has 1422/276/311 train/val/test images with no session overlap.
 ## Bảng tổng hợp (số của bạn, lấy từ `report/evidence/*.json`)
